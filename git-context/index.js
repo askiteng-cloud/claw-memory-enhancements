@@ -26,7 +26,7 @@ const DEFAULT_CONFIG = {
  * 加载配置
  */
 function loadConfig() {
-  const configPath = path.join(process.env.CLAWD_HOME || process.cwd(), 'config', 'compaction.json');
+  const configPath = path.join(process.env.OPENCLAW_HOME || process.cwd(), 'config', 'compaction.json');
   try {
     const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
     return { ...DEFAULT_CONFIG, ...(config.gitIntegration || {}) };

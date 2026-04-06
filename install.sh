@@ -48,9 +48,9 @@ find_clawd_locations() {
     "/opt/openclaw"
   )
   
-  # 检查 CLAWD_HOME 环境变量
-  if [ -n "$CLAWD_HOME" ]; then
-    locations=("$CLAWD_HOME" "${locations[@]}")
+  # 检查 OPENCLAW_HOME 环境变量
+  if [ -n "$OPENCLAW_HOME" ]; then
+    locations=("$OPENCLAW_HOME" "${locations[@]}")
   fi
   
   # 检查 openclaw 命令位置
@@ -79,11 +79,11 @@ find_clawd_locations() {
   printf '%s\n' "${found_dirs[@]}" | sort -u
 }
 
-CLAWD_HOME=""
+OPENCLAW_HOME=""
 
 # 首先检查环境变量
-if [ -n "$CLAWD_HOME" ] && validate_clawd_dir "$CLAWD_HOME"; then
-  success "从环境变量找到 OpenClaw: $CLAWD_HOME"
+if [ -n "$OPENCLAW_HOME" ] && validate_clawd_dir "$OPENCLAW_HOME"; then
+  success "从环境变量找到 OpenClaw: $OPENCLAW_HOME"
 # 然后尝试自动侦测
 else
   info "正在搜索 OpenClaw 安装位置..."
@@ -102,10 +102,10 @@ else
     echo ""
     read -rp "请输入你的 OpenClaw 目录路径 [默认: ~/clawd]: " user_input
     
-    CLAWD_HOME="${user_input:-$HOME/clawd}"
+    OPENCLAW_HOME="${user_input:-$HOME/clawd}"
     
-    if ! validate_clawd_dir "$CLAWD_HOME"; then
-      warning "目录 $CLAWD_HOME 看起来不像有效的 OpenClaw 目录"
+    if ! validate_clawd_dir "$OPENCLAW_HOME"; then
+      warning "目录 $OPENCLAW_HOME 看起来不像有效的 OpenClaw 目录"
       read -rp "是否仍要安装到此目录? (y/N): " confirm
       if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
         error "安装取消"
@@ -114,8 +114,8 @@ else
     fi
     
   elif [ ${#found_dirs[@]} -eq 1 ]; then
-    CLAWD_HOME="${found_dirs[0]}"
-    success "找到 OpenClaw: $CLAWD_HOME"
+    OPENCLAW_HOME="${found_dirs[0]}"
+    success "找到 OpenClaw: $OPENCLAW_HOME"
     
   else
     # 找到多个，让用户选择
@@ -128,8 +128,8 @@ else
     read -rp "请选择要安装到的目录 [1-${#found_dirs[@]}]: " choice
     
     if [[ "$choice" =~ ^[0-9]+$ ]] && [ "$choice" -ge 1 ] && [ "$choice" -le "${#found_dirs[@]}" ]; then
-      CLAWD_HOME="${found_dirs[$((choice-1))]}"
-      success "选择: $CLAWD_HOME"
+      OPENCLAW_HOME="${found_dirs[$((choice-1))]}"
+      success "选择: $OPENCLAW_HOME"
     else
       error "无效选择，安装取消"
       exit 1
@@ -138,13 +138,13 @@ else
 fi
 
 # 导出供后续使用
-export CLAWD_HOME
-SKILLS_DIR="$CLAWD_HOME/skills"
-CONFIG_DIR="$CLAWD_HOME/config"
+export OPENCLAW_HOME
+SKILLS_DIR="$OPENCLAW_HOME/skills"
+CONFIG_DIR="$OPENCLAW_HOME/config"
 
 echo ""
 info "安装目标:"
-echo "  CLAWD_HOME: $CLAWD_HOME"
+echo "  OPENCLAW_HOME: $OPENCLAW_HOME"
 echo "  SKILLS_DIR: $SKILLS_DIR"
 echo "  CONFIG_DIR: $CONFIG_DIR"
 echo ""
@@ -191,9 +191,9 @@ echo ""
 info "步骤 3/5: 验证目录结构..."
 
 # 确保目标目录存在
-if [ ! -d "$CLAWD_HOME" ]; then
-  info "创建 CLAWD_HOME 目录..."
-  mkdir -p "$CLAWD_HOME"
+if [ ! -d "$OPENCLAW_HOME" ]; then
+  info "创建 OPENCLAW_HOME 目录..."
+  mkdir -p "$OPENCLAW_HOME"
 fi
 
 # 确保 skills 和 config 子目录存在
@@ -348,14 +348,14 @@ if [ "$all_good" = true ]; then
   echo "╚════════════════════════════════════════════════════════════════╝"
   echo ""
   success "OpenClaw 记忆增强技能已安装到:"
-  echo "  📁 $CLAWD_HOME"
+  echo "  📁 $OPENCLAW_HOME"
   echo ""
   info "查看状态:"
-  echo "  node $CLAWD_HOME/skills/git-context/openclaw.js --status 2>/dev/null || echo '  请手动检查配置'"
+  echo "  node $OPENCLAW_HOME/skills/git-context/openclaw.js --status 2>/dev/null || echo '  请手动检查配置'"
   echo ""
   info "快速开始:"
   echo "  # 命令行使用"
-  echo "  node $CLAWD_HOME/skills/git-context/openclaw.js"
+  echo "  node $OPENCLAW_HOME/skills/git-context/openclaw.js"
   echo ""
   echo "  # 或在 Telegram 直接对话（自动启用）"
   echo ""
@@ -363,7 +363,7 @@ if [ "$all_good" = true ]; then
   echo "  $CONFIG_DIR/compaction.json"
   echo ""
   warning "提示: 如果 openclaw 命令找不到这些技能，请检查:"
-  echo "  1. CLAWD_HOME 环境变量是否设置正确"
+  echo "  1. OPENCLAW_HOME 环境变量是否设置正确"
   echo "  2. OpenClaw 的 skills 目录配置"
   echo ""
 else

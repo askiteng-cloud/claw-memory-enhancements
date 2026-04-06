@@ -42,7 +42,7 @@ function loadConfig() {
   const fs = require('fs');
   
   const configPath = path.join(
-    process.env.CLAWD_HOME || process.cwd(),
+    process.env.OPENCLAW_HOME || process.cwd(),
     'config',
     'compaction.json'
   );

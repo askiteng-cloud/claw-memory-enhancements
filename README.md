@@ -75,12 +75,12 @@ cd claw-memory-enhancements
 # 查看安装位置（install.sh 会显示实际路径）
 # 例如：/home/user/clawd 或 /opt/openclaw
 
-node <你的 CLAWD_HOME>/skills/git-context/openclaw.js
+node <你的 OPENCLAW_HOME>/skills/git-context/openclaw.js
 ```
 
 或使用启动器（如果已复制）：
 ```bash
-node <你的 CLAWD_HOME>/openclaw-smart.js --status
+node <你的 OPENCLAW_HOME>/openclaw-smart.js --status
 ```
 
 ### 使用
@@ -88,10 +88,10 @@ node <你的 CLAWD_HOME>/openclaw-smart.js --status
 #### 命令行
 ```bash
 # 直接使用技能
-node <你的 CLAWD_HOME>/skills/git-context/openclaw.js
+node <你的 OPENCLAW_HOME>/skills/git-context/openclaw.js
 
 # 或使用增强版启动器（如果已安装）
-node <你的 CLAWD_HOME>/openclaw-with-git.js agent "分析当前代码"
+node <你的 OPENCLAW_HOME>/openclaw-with-git.js agent "分析当前代码"
 ```
 
 #### Telegram
@@ -101,7 +101,7 @@ node <你的 CLAWD_HOME>/openclaw-with-git.js agent "分析当前代码"
 
 ## ⚙️ 配置
 
-编辑 `<你的 CLAWD_HOME>/config/compaction.json`：
+编辑 `<你的 OPENCLAW_HOME>/config/compaction.json`：
 
 ```json
 {
@@ -149,15 +149,15 @@ claw-memory-enhancements/
 安装脚本会自动运行测试，也可以手动测试：
 
 ```bash
-# 请根据你的实际安装路径替换 <你的 CLAWD_HOME>
+# 请根据你的实际安装路径替换 <你的 OPENCLAW_HOME>
 # install.sh 会显示实际安装位置
 
 # 测试 Git 上下文
-cd <你的 CLAWD_HOME>/skills/git-context
+cd <你的 OPENCLAW_HOME>/skills/git-context
 node test.js
 
 # 测试会话压缩
-cd <你的 CLAWD_HOME>/skills/session-compaction
+cd <你的 OPENCLAW_HOME>/skills/session-compaction
 node test.js
 ```
 
