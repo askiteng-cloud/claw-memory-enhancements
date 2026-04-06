@@ -149,16 +149,22 @@ claw-memory-enhancements/
 安装脚本会自动运行测试，也可以手动测试：
 
 ```bash
-# 假设你的 OpenClaw 安装在 ~/clawd
-# 如果安装在其他位置，请替换路径
+# 请根据你的实际安装路径替换 <你的 CLAWD_HOME>
+# install.sh 会显示实际安装位置
 
 # 测试 Git 上下文
-cd ~/clawd/skills/git-context
+cd <你的 CLAWD_HOME>/skills/git-context
 node test.js
 
 # 测试会话压缩
-cd ~/clawd/skills/session-compaction
+cd <你的 CLAWD_HOME>/skills/session-compaction
 node test.js
+```
+
+**示例**（如果安装在默认位置）：
+```bash
+cd ~/clawd/skills/git-context && node test.js
+cd ~/clawd/skills/session-compaction && node test.js
 ```
 
 ## 📊 性能指标
