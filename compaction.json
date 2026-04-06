@@ -1,0 +1,17 @@
+{
+  "gitIntegration": {
+    "enabled": true,
+    "triggerOnSkills": ["coding-agent", "skill-creator"],
+    "cacheDuration": 30,
+    "includeDiffStat": true,
+    "includeRecentCommits": 3
+  },
+  "compaction": {
+    "enabled": true,
+    "triggerThreshold": 0.70,
+    "preserveRecent": 6,
+    "preserveErrors": true,
+    "maxSummaryLength": 4000,
+    "format": "xml"
+  }
+}
