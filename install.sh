@@ -79,13 +79,16 @@ find_clawd_locations() {
   printf '%s\n' "${found_dirs[@]}" | sort -u
 }
 
-OPENCLAW_HOME=""
+# 保存环境变量值（如果设置了）
+ENV_OPENCLAW_HOME="${OPENCLAW_HOME:-}"
 
 # 首先检查环境变量
-if [ -n "$OPENCLAW_HOME" ] && validate_clawd_dir "$OPENCLAW_HOME"; then
+if [ -n "$ENV_OPENCLAW_HOME" ] && validate_clawd_dir "$ENV_OPENCLAW_HOME"; then
+  OPENCLAW_HOME="$ENV_OPENCLAW_HOME"
   success "从环境变量找到 OpenClaw: $OPENCLAW_HOME"
 # 然后尝试自动侦测
 else
+  OPENCLAW_HOME=""
   info "正在搜索 OpenClaw 安装位置..."
   
   # 查找所有可能的位置
