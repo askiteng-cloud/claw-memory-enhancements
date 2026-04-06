@@ -50,14 +50,32 @@ After:    8 messages,  2,295 tokens (8%)
 
 ## 🚀 快速开始
 
-### 安装
+### 方法 1：让 OpenClaw AI 自动安装（推荐）
+
+只需给 OpenClaw 发送以下消息：
+
+```
+请帮我安装这个技能：https://github.com/askiteng-cloud/claw-memory-enhancements
+```
+
+OpenClaw 会读取 [INSTALL_FOR_OPENCLAW.md](./INSTALL_FOR_OPENCLAW.md) 并自动完成安装。
+
+**优点：**
+- ✅ 无需手动运行脚本
+- ✅ 自动侦测 OpenClaw 位置
+- ✅ 自动处理配置和权限
+- ✅ 安装后立即测试验证
+
+### 方法 2：手动安装
+
+如果你更喜欢手动控制：
 
 ```bash
 # 克隆仓库
 git clone https://github.com/askiteng-cloud/claw-memory-enhancements.git
 cd claw-memory-enhancements
 
-# 一键安装（自动侦测 OpenClaw 目录）
+# 运行安装脚本（自动侦测 OpenClaw 目录）
 ./install.sh
 ```
 
