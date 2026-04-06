@@ -57,22 +57,41 @@ After:    8 messages,  2,295 tokens (8%)
 git clone https://github.com/askiteng-cloud/claw-memory-enhancements.git
 cd claw-memory-enhancements
 
-# 一键安装
+# 一键安装（自动侦测 OpenClaw 目录）
 ./install.sh
 ```
 
+**install.sh 会自动：**
+- 侦测 OpenClaw 安装位置（`~/clawd`, `~/.clawd`, `~/.openclaw`, `/opt/clawd` 等）
+- 如果找到多个位置，让你选择
+- 如果没找到，提示你输入路径
+- 自动备份原有配置
+
 ### 验证安装
 
+安装完成后，根据提示运行：
+
 ```bash
-node ~/clawd/openclaw-smart.js --status
+# 查看安装位置（install.sh 会显示实际路径）
+# 例如：/home/user/clawd 或 /opt/openclaw
+
+node <你的 CLAWD_HOME>/skills/git-context/openclaw.js
+```
+
+或使用启动器（如果已复制）：
+```bash
+node <你的 CLAWD_HOME>/openclaw-smart.js --status
 ```
 
 ### 使用
 
 #### 命令行
 ```bash
-# 使用增强版启动器
-node ~/clawd/openclaw-with-git.js agent "分析当前代码"
+# 直接使用技能
+node <你的 CLAWD_HOME>/skills/git-context/openclaw.js
+
+# 或使用增强版启动器（如果已安装）
+node <你的 CLAWD_HOME>/openclaw-with-git.js agent "分析当前代码"
 ```
 
 #### Telegram
@@ -82,7 +101,7 @@ node ~/clawd/openclaw-with-git.js agent "分析当前代码"
 
 ## ⚙️ 配置
 
-编辑 `~/clawd/config/compaction.json`：
+编辑 `<你的 CLAWD_HOME>/config/compaction.json`：
 
 ```json
 {
@@ -127,7 +146,12 @@ claw-memory-enhancements/
 
 ## 🧪 测试
 
+安装脚本会自动运行测试，也可以手动测试：
+
 ```bash
+# 假设你的 OpenClaw 安装在 ~/clawd
+# 如果安装在其他位置，请替换路径
+
 # 测试 Git 上下文
 cd ~/clawd/skills/git-context
 node test.js
