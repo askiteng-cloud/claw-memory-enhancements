@@ -197,6 +197,11 @@ function buildGitContext(cwd, config) {
     lines.push(`- Changes: ${diffStat.summary}`);
     if (diffStat.files.length > 0) {
       lines.push(`- Modified files: ${diffStat.files.join(', ')}`);
+      
+      const snippets = getDiffSnippets(cwd, diffStat.files);
+      if (snippets) {
+        lines.push(`- Diff snippets:\n${snippets}`);
+      }
     }
   }
   

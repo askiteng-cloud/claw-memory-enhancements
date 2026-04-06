@@ -170,6 +170,22 @@ function compactSession(messages, config = DEFAULT_CONFIG) {
     newSummary = newSummary.slice(0, config.maxSummaryLength) + '\n... [truncated]';
   }
   
+  // 保存长效记忆到本地文件 (Long-term memory persistence)
+  try {
+    const fs = require('fs');
+    const path = require('path');
+    const memoryDir = path.join(process.env.OPENCLAW_HOME || process.cwd(), 'memory');
+    if (!fs.existsSync(memoryDir)) {
+      fs.mkdirSync(memoryDir, { recursive: true });
+    }
+    const memoryFile = path.join(memoryDir, 'long-term-memory.md');
+    const timestamp = new Date().toISOString();
+    const memoryContent = `## Compaction [${timestamp}]\n\n${newSummary}\n\n`;
+    fs.appendFileSync(memoryFile, memoryContent, 'utf8');
+  } catch (e) {
+    // 忽略写入失败
+  }
+  
   // 构建新的消息列表
   const compactedMessages = [
     {

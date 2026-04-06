@@ -57,14 +57,15 @@ After:    8 messages,  2,295 tokens (8%)
 git clone https://github.com/askiteng-cloud/claw-memory-enhancements.git
 cd claw-memory-enhancements
 
-# 一键安装（自动侦测 OpenClaw 目录）
+# 一键安装
+# 智能侦测 .openclaw 隐藏目录，支持多工作区选择 (1, 2, 3...)
 ./install.sh
 ```
 
 **install.sh 会自动：**
-- 侦测 OpenClaw 安装位置（`~/clawd`, `~/.clawd`, `~/.openclaw`, `/opt/clawd` 等）
-- 如果找到多个位置，让你选择
-- 如果没找到，提示你输入路径
+- 侦测 OpenClaw 安装位置（包括 `.openclaw` 隐藏目录及 npm 全局目录）
+- **多工作区识别**：如果找到多个位置（如 `workspace`, `workspace-main`），让你通过数字选择
+- **环境自检**：安装后自动运行 `openclaw doctor --fix` 确保配置生效
 - 自动备份原有配置
 
 ### 验证安装
@@ -186,6 +187,25 @@ cd ~/clawd/skills/session-compaction && node test.js
 
 - Node.js ≥ 18
 - Git（用于 git-context）
+- OpenClaw
+
+## 🤝 贡献
+
+欢迎提交 Issue 和 PR！
+
+## 📄 许可证
+
+[MIT](LICENSE)
+
+## 🙏 致谢
+
+- [Claw Code](https://github.com/ultraworkers/claw-code) - 架构启发
+- [OpenClaw](https://openclaw.ai) - 平台支持
+
+---
+
+**Made with ❤️ by 旭哥 (Aski)**
+text）
 - OpenClaw
 
 ## 🤝 贡献
